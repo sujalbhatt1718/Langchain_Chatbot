@@ -140,7 +140,7 @@ The public deployment uses `chatbot/app.py`, which connects to Google Gemini. Th
 
 ### Live demo
 
-Deployment link: _Add your Streamlit URL here after deployment._
+Deployment link: [Open the AI Chatbot](https://langchainchatbot-ayeexmjj7uruwlgxgwabhb.streamlit.app/)
 
 ## Notes
 
