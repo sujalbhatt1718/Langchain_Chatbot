@@ -8,10 +8,11 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-GOOGLE_API_KEY =os.getenv("GOOGLE_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
+if os.getenv("LANGCHAIN_API_KEY"):
+    os.environ["LANGCHAIN_TRACING_V2"] = "true"
+    os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 
 
 # Prompt Template
@@ -30,7 +31,12 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 ## Streamlit framework
-st.title("LangChain Google Generative AI")
+st.title("AI Chatbot")
+st.caption("Powered by LangChain and Google Gemini")
+
+if not GOOGLE_API_KEY:
+    st.error("The app is missing its GOOGLE_API_KEY configuration.")
+    st.stop()
 
 input_text = st.text_input(
     "Enter your question here:"

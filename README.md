@@ -86,6 +86,19 @@ Open the local URL shown by Streamlit (usually `http://localhost:8501`). Enter a
 4. Ollama runs the local Llama 2 model.
 5. The generated response is displayed in the Streamlit interface.
 
+## Testing and observability with LangSmith
+
+This project was tested with **LangSmith** to trace and inspect the LangChain workflow. LangSmith helps monitor the prompt, model call, execution flow, response, and any errors while the chatbot is running.
+
+To enable tracing, add the following values to your local `.env` file:
+
+```env
+LANGCHAIN_API_KEY=your_langsmith_api_key
+LANGCHAIN_PROJECT=langchain-chatbot
+```
+
+Tracing is optional. The chatbot continues to run when these values are not configured.
+
 ## Using another Ollama model
 
 To use a different model, first download it, for example:
@@ -109,6 +122,25 @@ llm = Ollama(model="mistral", temperature=0.7, max_output_tokens=1024)
 ## Gemini example
 
 `chatbot/app.py` is a separate chatbot implementation using Google Gemini through `langchain-google-genai`. It requires a Google API key and is not the local/open-source workflow described above. Store any API key in `.env`; do not hard-code or commit it.
+
+## Deploy to Streamlit Community Cloud
+
+The public deployment uses `chatbot/app.py`, which connects to Google Gemini. The local Ollama application in `chatbot/localama.py` cannot be deployed to Streamlit Community Cloud because it requires an Ollama server and a locally downloaded model.
+
+1. Push the latest changes to GitHub.
+2. Go to [Streamlit Community Cloud](https://share.streamlit.io/) and sign in with GitHub.
+3. Select the repository `sujalbhatt1718/Langchain_Chatbot`, branch `main`, and set the main file path to `chatbot/app.py`.
+4. Open **Advanced settings** and add this secret:
+
+   ```toml
+   GOOGLE_API_KEY = "your-new-google-api-key"
+   ```
+
+5. Click **Deploy**. Streamlit will create a unique `https://<app-name>.streamlit.app` URL. Add that URL below after the deployment finishes.
+
+### Live demo
+
+Deployment link: _Add your Streamlit URL here after deployment._
 
 ## Notes
 
