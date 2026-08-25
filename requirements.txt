@@ -4,3 +4,6 @@ streamlit
 langchain_google_genai
 langchain_community
 ollama
+langserve
+fastapi
+uvicorn
