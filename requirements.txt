@@ -5,6 +5,7 @@ langchain-google-genai
 langchain-community
 langchain-huggingface
 langchain-text-splitters
+langchain-classic
 python-dotenv
 streamlit
 ollama
@@ -16,3 +17,4 @@ beautifulsoup4
 pypdf
 chromadb
 sentence-transformers
+requests
